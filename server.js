@@ -2,8 +2,11 @@ var express = require('express');
 
 var app = express();
 
+// custom middleware that outputs greeting and current URL to the console
 app.use(function (req, res, next) {
   console.log('Hello from the middleware!');
+  console.log(server.address().family + ' http://localhost:' + server.address().port);
+  console.log(req.headers.host + req.url);
   next();
 })
 

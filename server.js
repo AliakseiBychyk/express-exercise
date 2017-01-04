@@ -1,4 +1,5 @@
 var express = require('express');
+var path = require('path');
 
 var app = express();
 
@@ -17,7 +18,9 @@ app.get('/', function (req, res) {
 // sample http://localhost:3002/user/Aleks?option=server-test
 app.get('/user/:user', function (req, res) {
   res.send('Page for user ' + req.params.user + ' with option ' + req.query.option);
-})
+});
+
+app.use(express.static(path.join(__dirname + '/public')));
 
 var server = app.listen(3002, function () {
   console.log('Server running on http://localhost:' + server.address().port);

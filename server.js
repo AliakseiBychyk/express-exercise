@@ -33,6 +33,7 @@ app.get('/flight/:from-:to', function (req, res, next) {
   res.send('Flight is from ' + req.params.from +' to ' + req.params.to);
   });
 
+// external router
 app.use('/planes', planes);
 
 app.use(express.static(path.join(__dirname + '/public')));

@@ -2,7 +2,8 @@ var express = require('express');
 var router = express.Router();
 
 router.use(function timeLog(req, res, next) {
-  console.log('Time: ' + Date.now());
+  var date = new Date();
+  console.log('Time: ' + date.getHours() +':'+ date.getMinutes() +':'+ date.getSeconds() + ' ' + date.getDate() +'/' + date.getMonth()+1 +'/' + date.getFullYear());
   next();
 });
 

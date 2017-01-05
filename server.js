@@ -15,9 +15,21 @@ app.get('/', function (req, res) {
   res.send("Show me the way to the next whiskey bar, oh don't ask why...");
 });
 
+// middleware that gets and outputs params and query from the URL route
 // sample http://localhost:3002/user/Aleks?option=server-test
 app.get('/user/:user', function (req, res) {
+  console.log(req.params);
+  console.log(req.query);
   res.send('Page for user ' + req.params.user + ' with option ' + req.query.option);
+});
+
+// middleware that handles two callbacks
+app.get('/flight/:from-:to', function (req, res, next) {
+  console.log('Flight is from ' + req.params.from +' to ' + req.params.to);
+  next();
+}, function (req, res) {
+  console.log('This is a new handling callback function, look in browser...');
+  res.send('Flight is from ' + req.params.from +' to ' + req.params.to);
 });
 
 app.use(express.static(path.join(__dirname + '/public')));

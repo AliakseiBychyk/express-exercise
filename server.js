@@ -1,5 +1,6 @@
 var express = require('express');
 var path = require('path');
+var planes = require('./routes/planes.js');
 
 var app = express();
 
@@ -30,7 +31,9 @@ app.get('/flight/:from-:to', function (req, res, next) {
 }, function (req, res) {
   console.log('This is a new handling callback function, look in browser...');
   res.send('Flight is from ' + req.params.from +' to ' + req.params.to);
-});
+  });
+
+app.use('/planes', planes);
 
 app.use(express.static(path.join(__dirname + '/public')));
 
